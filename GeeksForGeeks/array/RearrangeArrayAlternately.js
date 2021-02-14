@@ -9,6 +9,10 @@
  *     fourth should be second min and so on.
  *
  * eg:
+ *   Input:
+ *     N = 6
+ *     arr[] = {1,2,3,4,5,6}
+ *   Output: 6 1 5 2 4 3
  */
 
 
