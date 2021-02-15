@@ -74,45 +74,45 @@ function countPairs(X, Y, N, M) {
     return ans
 }
 
+/***
+ *
+ * same as above, more readable
+ *
+ * @param X
+ * @param Y
+ * @param N
+ * @param M
+ * @returns {number}
+ */
+
 function countPairs2(X, Y, N, M) {
     let [yi, ans] = [0, 0]
+
     X = X.sort((a, b) => a-b)
     Y = Y.sort((a, b) => a-b)
-
     console.log("X: ", X)
     console.log("Y: ", Y)
 
-    for(let xi=0; xi<N; xi++) {
+    for(let xi = 0; xi < N; xi++) {
+        if(X[xi] === 1 ) continue
+
+        while(Y[yi] <= X[xi]) { yi++ }
+        console.log("yi:", yi)
+        ans += (M-yi)
+
+        if(Y[0] === 1) ans++
+
         if(X[xi] === 2) {
-            for(yi=0; Y[yi]<5 && yi < M; yi++) {
-                if(Y[yi] !== 2 && Y[yi] !== 3 && Y[yi] !== 4) {
-                    console.log("x:", X[xi], "y:", Y[yi])
-                    ans += 1
-                }
-            }
-            console.log("---M:", M, "yi:", yi)
-            ans += (M-yi)
+            if(Y.indexOf(2) !== -1) ans--
+            if(Y.indexOf(3) !== -1) ans--
+            if(Y.indexOf(4) !== -1) ans--
         }
-        else if(X[xi] === 3) {
-            for(yi=0; Y[yi]<4 && yi < M; yi++) {
-                if(Y[yi] !== 3) {
-                    console.log("x:", X[xi], "y:", Y[yi])
-                    ans += 1
-                }
-            }
-            console.log("---M:", M, "yi:", yi)
-            ans += (M-yi)
+        if(X[xi] === 3) {
+            if(Y.indexOf(2) !== -1) ans++
+            if(Y.indexOf(3) !== -1) ans--
         }
-        else if(X[xi] > 3) {
-            for(yi=0; Y[yi] < X[xi]+1 && yi < M; yi++) {
-                if(Y[yi] === 1) {
-                    console.log("x:", X[xi], "y:", Y[yi])
-                    ans += 1
-                }
-            }
-            console.log("---M:", M, "yi:", yi)
-            ans += (M-yi)
-        }
+
+        yi = 0
     }
 
     return ans
@@ -124,13 +124,13 @@ const pairs = countPairs2(
     42,68
 )
 
-// const pairs = countPairs(
+// const pairs = countPairs2(
 //     [1, 5, 2, 9, 4],
 //     [6, 1, 4, 3],
-//     5,4
+// //     5,4
 // )
 
-// const pairs = countPairs(
+// const pairs = countPairs2(
 //     [2, 3, 4, 5],
 //     [1, 2, 3],
 //     4,3
