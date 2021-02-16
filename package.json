@@ -1,8 +1,31 @@
 {
-  "name": "CodingQuestions-JS",
+  "name": "codingquestions-js",
   "version": "1.0.0",
+  "description": "Coding Questions using JS",
+  "main": "index.js",
   "type": "module",
+  "scripts": {
+    "test": "jest"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.jsx?$": "babel-jest"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zhichaoSun/CodingQuestions-JS.git"
+  },
+  "author": "Zhichao",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zhichaoSun/CodingQuestions-JS/issues"
+  },
+  "homepage": "https://github.com/zhichaoSun/CodingQuestions-JS#readme",
   "dependencies": {
-    
+    "@babel/preset-env": "^7.12.16",
+    "@jest/globals": "^26.6.2",
+    "babel-jest": "^26.6.3",
+    "jest": "^26.6.3"
   }
 }
