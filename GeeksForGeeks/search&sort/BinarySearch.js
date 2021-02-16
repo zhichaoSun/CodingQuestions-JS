@@ -3,33 +3,27 @@
  * Binary Search
  *
  * @param arr
- * @param n
  * @param el
- * @returns {number}: index or -1 when not foundd
+ * @returns {number}: index or -1 when not found
+ *
  */
-export function binarySearch(arr, n, el) {
+export function binarySearch(arr, el) {
     let left = 0, right = arr.length-1
 
     while(left <= right) {
         let mid = Math.floor((left + right)/2)
-        console.log("left:", left, "mid:", mid, "right:", right)
+        // console.log("left:", left, "mid:", mid, "right:", right)
 
         if(arr[mid] === el) return mid
         else if(arr[mid] > el) right = mid - 1
         else left = mid + 1
 
 
-        console.log("left:", left, "mid:", mid, "right:", right)
-        console.log()
+        // console.log("left:", left, "mid:", mid, "right:", right)
+        // console.log()
     }
     return -1
 }
-
-const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 124, 155, 1252]
-//   0  1  2  3  4  5  6  7  8  9   10  11   12   13
-const el = 1252
-const ans = binarySearch(arr, arr.length, el)
-console.log("ans:", ans)
 
 
 /***
@@ -47,57 +41,122 @@ export function binarySearchR(arr, left, right, el) {
     if(left > right) return -1;
 
     let i = Math.floor((right+left)/2);
-    console.log("i:", i)
+    // console.log("i:", i)
 
     if(arr[i] === el) return i;
     else if(arr[i] < el) return binarySearchR(arr, i+1, right, el);
     else if(arr[i] > el) return binarySearchR(arr, left, i-1, el);
 }
 
-// const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 124, 155, 1252]
-//         //   0  1  2  3  4  5  6  7  8  9   10  11   12   13
-// const el = 1252
-// const ans = binarySearchR(arr, 0, arr.length, el)
-// console.log("ans:", ans)
+
+/*
+ *
+ * The lower and upper bound of a binary search
+ *
+ * eg:
+ *   for 1 2 3 4 5 5 5 6 7 9
+ *   --------------------------------
+ *   in a BS for 3:
+ *      v-- lower bound
+ *   1 2 3 4 5 5 5 6 7 9
+ *        ^-- upper bound
+ *   --------------------------------
+ *   --------------------------------
+ *   in a BS for 5:
+ *          v-- lower bound
+ *   1 2 3 4 5 5 5 6 7 9
+ *                ^-- upper bound
+ *   --------------------------------
+ *   --------------------------------
+ *   in a BS for 8:
+ *                    v-- lower bound
+ *   1 2 3 4 5 5 5 6 7 9
+ *                    ^-- upper bound
+ *   --------------------------------
+ *
+ */
 
 
+/***
+ *
+ * binary search bound >=
+ *
+ * @param arr
+ * @param el
+ * @returns {number} the index of the first item in the array `>=` el or array.length when el > all
+ *
+ */
+export function binarySearchBoundGe(arr, el) {
+    let left = 0, right = arr.length-1, i = arr.length
+    while(left <= right) {
+        let mid = Math.floor((left + right)/2)
 
-
-
-export function binarySearchUpperB(arr, left, right, el) {
-    if(left > right) return right+1;
-
-    let i = Math.floor((right+left)/2);
-    console.log("left:", left, "\ti:", i, "\tright:", right)
-    if(i == arr.length) return -1;
-
-    if(arr[i] == el) return i;
-    else if(arr[i] < el) return binarySearchUpperB(arr, i+1, right, el);
-    else if(arr[i] > el) return binarySearchUpperB(arr, left, i-1, el);
+        if(arr[mid] >= el) { i = mid; right = mid - 1}
+        else left = mid + 1
+    }
+    return i
 }
 
-// const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 124, 155, 1252]
-//         //   0  1  2  3  4  5  6  7  8  9   10  11   12   13
-// const el = 0
-// const ans = binarySearchUpperB(arr, 0, arr.length, el)
-// console.log("ans:", ans)
 
+/***
+ *
+ * binary search bound >
+ *
+ * @param arr
+ * @param el
+ * @returns {number} the index of the first item in the array `>` el or array.length when el >= all
+ *
+ */
+export function binarySearchBoundGt(arr, el) {
+    let left = 0, right = arr.length-1, i = arr.length
+    while(left <= right) {
+        let mid = Math.floor((left + right)/2)
 
-export function binarySearchLowerB(arr, left, right, el) {
-    if(left > right) return left-1;
-
-    let i = Math.floor((right+left)/2);
-    console.log("left:", left, "\ti:", i, "\tright:", right)
-    if(i == arr.length) return arr.length-1;
-
-    if(arr[i] == el) return i;
-    else if(arr[i] < el) return binarySearchLowerB(arr, i+1, right, el);
-    else if(arr[i] > el) return binarySearchLowerB(arr, left, i-1, el);
+        if(arr[mid] > el) { i = mid; right = mid - 1}
+        else left = mid + 1
+    }
+    return i
 }
 
-// const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 124, 155, 1252]
-//         //   0  1  2  3  4  5  6  7  8  9   10  11   12   13
-// const el = 0
-// const ans = binarySearchLowerB(arr, 0, arr.length, el)
-// console.log("ans:", ans)
+
+/***
+ *
+ * binary search bound <=
+ *
+ * @param arr
+ * @param el
+ * @returns {number} the index of the last item in the array `<=` el or -1 when el < all
+ *
+ */
+export function binarySearchBoundLe(arr, el) {
+    let left = 0, right = arr.length-1, i = -1
+    while(left <= right) {
+        let mid = Math.floor((left + right)/2)
+
+        if(arr[mid] <= el) { i = mid; left = mid + 1}
+        else right = mid - 1
+    }
+    return i
+}
+
+
+/***
+ *
+ * binary search bound <
+ *
+ * @param arr
+ * @param el
+ * @returns {number} the index of the last item in the array `<=` el or -1 when el <= all
+ *
+ */
+export function binarySearchBoundLt(arr, el) {
+    let left = 0, right = arr.length-1, i = -1
+    while(left <= right) {
+        let mid = Math.floor((left + right)/2)
+
+        if(arr[mid] < el) { i = mid; left = mid + 1}
+        else right = mid - 1
+    }
+    return i
+}
 
