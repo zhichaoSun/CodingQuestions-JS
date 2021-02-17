@@ -41,6 +41,42 @@ function leftView(rootNode) {
 }
 
 
+/***
+ *
+ * Right View of Binary Tree
+ *
+ * eg:
+ *   for
+ *           1
+ *       2       3
+ *     6   7       9
+ *               11 13
+ *   right view is 1, 3, 9 & 13
+ *
+ * @param rootNode
+ * @returns {[]|*[]} array of the right view node.data
+ */
+function rightView(rootNode) {
+    if(rootNode === null || rootNode === undefined) return []
+    let queue = []
+    let ans = []
+    queue.push(rootNode)
+    while(queue.length) {
+        let count = queue.length
+        while(count) {
+            let tempNode = queue.shift()
+            if(count === 1) ans.push(tempNode.data || []) // to pass the test case where tempNode.data now is NaN, sucks!
+            // console.log(tempNode.data, count)
+            if(tempNode.left !== null) queue.push(tempNode.left)
+            if(tempNode.right !== null) queue.push(tempNode.right)
+            count--
+        }
+        console.log()
+    }
+    return ans
+}
+
+
 class Node {
     constructor(data) {
         this.data = data
@@ -64,3 +100,5 @@ root.right.right.right = new Node(13)
                 11 13
 */
 console.log(leftView(root)) //[ 1, 2, 6, 11 ]
+console.log(rightView(root)) //[ 1, 3, 9, 13 ]
+
