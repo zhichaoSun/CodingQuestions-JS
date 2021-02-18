@@ -35,3 +35,24 @@ export function isValidSubsequence(array, sequence) {
     }
     return si === sequence.length
 }
+
+
+/***
+ *
+ * another solution
+ *
+ * O(N) time complexity
+ * O(1) aux space
+ *
+ * @param array
+ * @param sequence
+ * @returns {boolean}
+ */
+export function isValidSubsequence2(array, sequence) {
+    let si = 0
+    for(const a of array) {
+        if(si === sequence.length) break
+        if(a === sequence[si]) si++
+    }
+    return si === sequence.length
+}
