@@ -5,7 +5,9 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "test:GFG": "jest -i ./GeeksForGeeks/test/GFG.test.js",
+    "test:AE": "jest -i ./AE/test/AE.test.js"
   },
   "jest": {
     "transform": {
