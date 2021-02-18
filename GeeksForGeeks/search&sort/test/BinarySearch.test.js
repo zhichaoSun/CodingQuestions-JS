@@ -9,7 +9,7 @@ import {
     binarySearchBoundLe,
     binarySearchBoundLt
 
-} from "./BinarySearch"
+} from "../BinarySearch"
 
 test("binary search", () => {
     const array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 14, 16, 20]
