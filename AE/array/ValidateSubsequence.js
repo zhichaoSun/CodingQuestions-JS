@@ -1,4 +1,4 @@
-/***
+/*
  *
  * Validate Subsequence
  *
