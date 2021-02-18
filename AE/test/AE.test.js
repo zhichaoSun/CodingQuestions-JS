@@ -29,6 +29,40 @@ describe("Validate subsequence: ", () => {
     })
 })
 
+import { 
+    getNthFib,
+    getNthFib2 
+} from "../recursion/NthFibonacci";
+
+describe("Nth Fibonacci Number: ", () => {
+
+    test("case 1", () => {
+        const n = 0
+        expect(getNthFib(n)).toBe(0)
+        expect(getNthFib2(n)).toBe(0)
+    })
+
+    test("case 2", () => {
+        const n = 1
+        expect(getNthFib(n)).toBe(0)
+        expect(getNthFib2(n)).toBe(0)
+    })
+
+    test("case 3", () => {
+        const n = 2
+        expect(getNthFib(n)).toBe(1)
+        expect(getNthFib2(n)).toBe(1)
+    })
+
+    test("case 4", () => {
+        const n = 17
+        expect(getNthFib(n)).toBe(987)
+        expect(getNthFib2(n)).toBe(987)
+    })
+
+
+})
+
 
 
 
