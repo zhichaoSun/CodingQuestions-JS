@@ -65,13 +65,11 @@ function rightView(rootNode) {
         let count = queue.length
         while(count) {
             let tempNode = queue.shift()
-            if(count === 1) ans.push(tempNode.data || []) // to pass the test case where tempNode.data now is NaN, sucks!
-            // console.log(tempNode.data, count)
+            if(count === 1) ans.push(tempNode.data || [])
             if(tempNode.left !== null) queue.push(tempNode.left)
             if(tempNode.right !== null) queue.push(tempNode.right)
             count--
         }
-        console.log()
     }
     return ans
 }
