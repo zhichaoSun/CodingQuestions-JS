@@ -2,7 +2,7 @@
  *
  * Bubble sort
  *
- * O(N^2) time complexity
+ * avg: O(N^2), best: O(N); worst: O(N^2)
  * O(1) aux space
  *
  * @param array
@@ -28,6 +28,7 @@ export function bubbleSort(array) {
         count++
         if(!swapped) break
     }
+    return array
 }
 
 /***
@@ -52,4 +53,5 @@ export function bubbleSort2(array) {
         n = count
         if(!swapped) break
     }
+    return array
 }
