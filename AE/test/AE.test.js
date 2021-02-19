@@ -120,3 +120,30 @@ describe("Insertion sort: ", () => {
     })
 })
 
+
+import { selectionSort } from "../sort/SelectionSort"
+describe("Selection sort: ", () => {
+    test("case 1", () => {
+        const sortedArray = [-10, -10, -9, -7, -7, -6, -5, -2, 2, 2, 3, 3, 4, 5, 8, 8, 9, 10]
+
+        const array1 = [-7, 2, 3, 8, -10, 4, -6, -10, -2, -7, 10, 5, 2, 9, -9, -5, 3, 8]
+        selectionSort(array1)
+        expect(JSON.stringify(array1) === JSON.stringify(sortedArray)).toBe(true)
+    })
+
+    test("case 2", () => {
+        const sortedArray = [1]
+
+        const array1 = [1]
+        selectionSort(array1)
+        expect(JSON.stringify(array1) === JSON.stringify(sortedArray)).toBe(true)
+    })
+
+    test("case 3", () => {
+        const sortedArray = []
+
+        const array1 = []
+        selectionSort(array1)
+        expect(JSON.stringify(array1) === JSON.stringify(sortedArray)).toBe(true)
+    })
+})
