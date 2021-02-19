@@ -145,33 +145,41 @@ describe("Selection sort: ", () => {
 })
 
 
-import { threeNumberSort } from "../sort/ThreeNumberSort"
+import { threeNumberSort, threeNumberSort2 } from "../sort/ThreeNumberSort"
 describe("Three number order sort:", () => {
     test("cast 1: three numbers", () => {
-        const array = [1, 0, 0, -1, -1, 0, 1, 1]
         const order = [0, 1, -1]
+
+        const array = [1, 0, 0, -1, -1, 0, 1, 1]
         threeNumberSort(array, order)
-        expect(JSON.stringify(array) ===
-            JSON.stringify([0, 0, 0, 1, 1, 1, -1, -1])
-        ).toBe(true)
+        expect(JSON.stringify(array) === JSON.stringify([0, 0, 0, 1, 1, 1, -1, -1])).toBe(true)
+
+        const array2 = [1, 0, 0, -1, -1, 0, 1, 1]
+        threeNumberSort2(array2, order)
+        expect(JSON.stringify(array2) === JSON.stringify([0, 0, 0, 1, 1, 1, -1, -1])).toBe(true)
     })
 
     test("cast 2: empty array", () => {
-        const array = []
         const order = [0, 1, -1]
+
+        const array = []
         threeNumberSort(array, order)
-        expect(JSON.stringify(array) ===
-            JSON.stringify([])
-        ).toBe(true)
+        expect(JSON.stringify(array) === JSON.stringify([])).toBe(true)
+
+        const array2 = []
+        threeNumberSort2(array2, order)
+        expect(JSON.stringify(array2) === JSON.stringify([])).toBe(true)
     })
 
     test("cast 3: less than three numbers", () => {
-        const array = [-1, -1, -1, 0, 0, 0]
         const order = [0, 1, -1]
-        threeNumberSort(array, order)
-        expect(JSON.stringify(array) ===
-            JSON.stringify([0, 0, 0, -1, -1, -1])
-        ).toBe(true)
-    })
 
+        const array = [-1, -1, -1, 0, 0, 0]
+        threeNumberSort(array, order)
+        expect(JSON.stringify(array) === JSON.stringify([0, 0, 0, -1, -1, -1])).toBe(true)
+
+        const array2 = [-1, -1, -1, 0, 0, 0]
+        threeNumberSort(array2, order)
+        expect(JSON.stringify(array2) === JSON.stringify([0, 0, 0, -1, -1, -1])).toBe(true)
+    })
 })

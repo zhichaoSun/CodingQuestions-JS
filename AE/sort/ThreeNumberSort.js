@@ -14,6 +14,8 @@
 
 /***
  *
+ * move unmatched element to the end of the array * 3 times
+ *
  * O(N^2) time complexity
  * O(1) aux space
  *
@@ -34,6 +36,38 @@ export function threeNumberSort(array, order) {
             } else index++ // if == current order, then dont move
         }
         oi--
+    }
+
+    return array
+}
+
+
+/***
+ *
+ * another interesting solution
+ *
+ * O(N) time complexity
+ * O(1) aux space
+ *
+ * @param array
+ * @param order array
+ * @returns new created sorted array
+ *
+ */
+export function threeNumberSort2(array, order) {
+    let numberCount = [0, 0, 0]
+    for(let ai = 0; ai < array.length; ai++) {
+        const ni = order.indexOf(array[ai])
+        numberCount[ni]++
+    } // count the numbers and fill in an array
+
+    for(let i = 0; i < 3; i++) {
+        let count = numberCount[i]
+        let numbersBefore = numberCount.slice(0, i).reduce((acc, numCount) => acc + numCount, 0)
+
+        for(let ai = 0; ai < count; ai++) {
+            array[ai+numbersBefore] = order[i]
+        }
     }
 
     return array
