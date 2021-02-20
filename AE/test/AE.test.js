@@ -244,3 +244,29 @@ describe("A caesar cipher encryptor:", () => {
     })
 })
 
+
+import { productSum } from "../recursion/ProductSum"
+describe("Product Sum:", () => {
+    test("cast 1:", () => {
+        expect(productSum([5, 2, [7, -1], 3, [6, [-13, 8], 4]])).toBe(12)
+    })
+
+    test("cast 2:", () => {
+        expect(productSum([1, 2, 3, 4, 5])).toBe(15)
+    })
+
+    test("cast 3:", () => {
+        expect(productSum([[[[[5]]]]])).toBe(600)
+    })
+
+    test("cast 4:", () => {
+        expect(productSum([1, 2, [3], 4, 5])).toBe(18)
+    })
+
+    test("cast 5:", () => {
+        expect(productSum([9, [2, -3, 4], 1, [1, 1, [1, 1, 1]], [[[[3, 4, 1]]], 8],
+            [1, 2, 3, 4, 5, [6, 7], -7], [1, [2, 3, [4, 5]], [6, 0, [7, 0, -8]], -7],
+            [1, -3, 2, [1, -3, 2, [1, -3, 2], [1, -3, 2, [1, -3, 2]], [1, -3, 2]]], -3
+        ])).toBe(1351)
+    })
+})
