@@ -183,3 +183,32 @@ describe("Three number order sort:", () => {
         expect(JSON.stringify(array2) === JSON.stringify([0, 0, 0, -1, -1, -1])).toBe(true)
     })
 })
+
+
+import { findThreeLargestNumbers } from "../search/LargestThreeNumber"
+describe("Find the largest three numbers:", () => {
+    test("cast 1: ", () => {
+        const array = [141, 1, 17, -7, -17, -27, 18, 541, 8, 7, 7]
+        expect(JSON.stringify(findThreeLargestNumbers(array)) ===
+            JSON.stringify([18, 141, 541])).toBe(true)
+    })
+
+    test("cast 2: ", () => {
+        const array = [55, 7, 8]
+        expect(JSON.stringify(findThreeLargestNumbers(array)) ===
+            JSON.stringify([7, 8, 55])).toBe(true)
+    })
+
+    test("cast 3: ", () => {
+        const array = [7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7]
+        expect(JSON.stringify(findThreeLargestNumbers(array)) ===
+            JSON.stringify([7, 7, 7])).toBe(true)
+    })
+
+    test("cast 4: ", () => {
+        const array = [7, 7, 7, 7, 7, 7, 8, 7, 7, 7, 7]
+        expect(JSON.stringify(findThreeLargestNumbers(array)) ===
+            JSON.stringify([7, 7, 8])).toBe(true)
+    })
+})
+
