@@ -212,3 +212,19 @@ describe("Find the largest three numbers:", () => {
     })
 })
 
+
+import { isPalindrome } from "../string/Palindrome"
+describe("Find the largest three numbers:", () => {
+    test("cast 1: a palindrome", () => {
+        expect(isPalindrome("abcdcba")).toBe(true)
+    })
+
+    test("cast 2: a non-palindrome", () => {
+        expect(isPalindrome("abcdefghhgfedca")).toBe(false)
+    })
+
+    test("cast 3: a single-character palindrome", () => {
+        expect(isPalindrome("a")).toBe(true)
+    })
+})
+
