@@ -62,33 +62,36 @@ describe("Bubble sort: ", () => {
         const sortedArray = [-10, -10, -9, -7, -7, -6, -5, -2, 2, 2, 3, 3, 4, 5, 8, 8, 9, 10]
 
         const array1 = [-7, 2, 3, 8, -10, 4, -6, -10, -2, -7, 10, 5, 2, 9, -9, -5, 3, 8]
-        const array2 = [-7, 2, 3, 8, -10, 4, -6, -10, -2, -7, 10, 5, 2, 9, -9, -5, 3, 8]
         bubbleSort(array1)
+        const array2 = [-7, 2, 3, 8, -10, 4, -6, -10, -2, -7, 10, 5, 2, 9, -9, -5, 3, 8]
         bubbleSort2(array2)
-        expect(JSON.stringify(array1) === JSON.stringify(sortedArray)).toBe(true)
-        expect(JSON.stringify(array2) === JSON.stringify(sortedArray)).toBe(true)
+
+        expect(array1).toEqual(sortedArray)
+        expect(array2).toEqual(sortedArray)
     })
 
     test("case 2", () => {
         const sortedArray = [1]
 
         const array1 = [1]
-        const array2 = [1]
         bubbleSort(array1)
+        const array2 = [1]
         bubbleSort2(array2)
-        expect(JSON.stringify(array1) === JSON.stringify(sortedArray)).toBe(true)
-        expect(JSON.stringify(array2) === JSON.stringify(sortedArray)).toBe(true)
+
+        expect(array1).toEqual(sortedArray)
+        expect(array2).toEqual(sortedArray)
     })
 
     test("case 3", () => {
         const sortedArray = []
 
         const array1 = []
-        const array2 = []
         bubbleSort(array1)
+        const array2 = []
         bubbleSort2(array2)
-        expect(JSON.stringify(array1) === JSON.stringify(sortedArray)).toBe(true)
-        expect(JSON.stringify(array2) === JSON.stringify(sortedArray)).toBe(true)
+
+        expect(array1).toEqual(sortedArray)
+        expect(array2).toEqual(sortedArray)
     })
 })
 
@@ -97,26 +100,23 @@ import { insertionSort } from "../sort/InsertionSort"
 describe("Insertion sort: ", () => {
     test("case 1", () => {
         const sortedArray = [-10, -10, -9, -7, -7, -6, -5, -2, 2, 2, 3, 3, 4, 5, 8, 8, 9, 10]
-
         const array1 = [-7, 2, 3, 8, -10, 4, -6, -10, -2, -7, 10, 5, 2, 9, -9, -5, 3, 8]
         insertionSort(array1)
-        expect(JSON.stringify(array1) === JSON.stringify(sortedArray)).toBe(true)
+        expect(array1).toEqual(sortedArray)
     })
 
     test("case 2", () => {
         const sortedArray = [1]
-
         const array1 = [1]
         insertionSort(array1)
-        expect(JSON.stringify(array1) === JSON.stringify(sortedArray)).toBe(true)
+        expect(array1).toEqual(sortedArray)
     })
 
     test("case 3", () => {
         const sortedArray = []
-
         const array1 = []
         insertionSort(array1)
-        expect(JSON.stringify(array1) === JSON.stringify(sortedArray)).toBe(true)
+        expect(array1).toEqual(sortedArray)
     })
 })
 
@@ -124,23 +124,22 @@ describe("Insertion sort: ", () => {
 import { selectionSort } from "../sort/SelectionSort"
 describe("Selection sort: ", () => {
     test("case 1", () => {
-        const array1 = [-7, 2, 3, 8, -10, 4, -6, -10, -2, -7, 10, 5, 2, 9, -9, -5, 3, 8]
-        selectionSort(array1)
-        expect(JSON.stringify(array1) ===
-            JSON.stringify([-10, -10, -9, -7, -7, -6, -5, -2, 2, 2, 3, 3, 4, 5, 8, 8, 9, 10])
-        ).toBe(true)
+        const sortedArray = [-10, -10, -9, -7, -7, -6, -5, -2, 2, 2, 3, 3, 4, 5, 8, 8, 9, 10]
+        const array = [-7, 2, 3, 8, -10, 4, -6, -10, -2, -7, 10, 5, 2, 9, -9, -5, 3, 8]
+        selectionSort(array)
+        expect(array).toEqual(sortedArray)
     })
 
     test("case 2", () => {
-        const array1 = [1]
-        selectionSort(array1)
-        expect(JSON.stringify(array1) === JSON.stringify([1])).toBe(true)
+        const array = [1]
+        selectionSort(array)
+        expect(array).toEqual([1])
     })
 
     test("case 3", () => {
-        const array1 = []
-        selectionSort(array1)
-        expect(JSON.stringify(array1) === JSON.stringify([])).toBe(true)
+        const array = []
+        selectionSort(array)
+        expect(array).toEqual([])
     })
 })
 
@@ -150,37 +149,37 @@ describe("Three number order sort:", () => {
     test("cast 1: three numbers", () => {
         const order = [0, 1, -1]
 
-        const array = [1, 0, 0, -1, -1, 0, 1, 1]
-        threeNumberSort(array, order)
-        expect(JSON.stringify(array) === JSON.stringify([0, 0, 0, 1, 1, 1, -1, -1])).toBe(true)
+        const array1 = [1, 0, 0, -1, -1, 0, 1, 1]
+        threeNumberSort(array1, order)
+        expect(array1).toEqual([0, 0, 0, 1, 1, 1, -1, -1])
 
         const array2 = [1, 0, 0, -1, -1, 0, 1, 1]
         threeNumberSort2(array2, order)
-        expect(JSON.stringify(array2) === JSON.stringify([0, 0, 0, 1, 1, 1, -1, -1])).toBe(true)
+        expect(array2).toEqual([0, 0, 0, 1, 1, 1, -1, -1])
     })
 
     test("cast 2: empty array", () => {
         const order = [0, 1, -1]
 
-        const array = []
-        threeNumberSort(array, order)
-        expect(JSON.stringify(array) === JSON.stringify([])).toBe(true)
+        const array1 = []
+        threeNumberSort(array1, order)
+        expect(array1).toEqual([])
 
         const array2 = []
         threeNumberSort2(array2, order)
-        expect(JSON.stringify(array2) === JSON.stringify([])).toBe(true)
+        expect(array2).toEqual([])
     })
 
     test("cast 3: less than three numbers", () => {
         const order = [0, 1, -1]
 
-        const array = [-1, -1, -1, 0, 0, 0]
-        threeNumberSort(array, order)
-        expect(JSON.stringify(array) === JSON.stringify([0, 0, 0, -1, -1, -1])).toBe(true)
+        const array1 = [-1, -1, -1, 0, 0, 0]
+        threeNumberSort(array1, order)
+        expect(array1).toEqual([0, 0, 0, -1, -1, -1])
 
         const array2 = [-1, -1, -1, 0, 0, 0]
-        threeNumberSort(array2, order)
-        expect(JSON.stringify(array2) === JSON.stringify([0, 0, 0, -1, -1, -1])).toBe(true)
+        threeNumberSort2(array2, order)
+        expect(array2).toEqual([0, 0, 0, -1, -1, -1])
     })
 })
 
@@ -189,26 +188,22 @@ import { findThreeLargestNumbers } from "../search/LargestThreeNumber"
 describe("Find the largest three numbers:", () => {
     test("cast 1: ", () => {
         const array = [141, 1, 17, -7, -17, -27, 18, 541, 8, 7, 7]
-        expect(JSON.stringify(findThreeLargestNumbers(array)) ===
-            JSON.stringify([18, 141, 541])).toBe(true)
+        expect((findThreeLargestNumbers(array))).toEqual([18, 141, 541])
     })
 
     test("cast 2: ", () => {
         const array = [55, 7, 8]
-        expect(JSON.stringify(findThreeLargestNumbers(array)) ===
-            JSON.stringify([7, 8, 55])).toBe(true)
+        expect((findThreeLargestNumbers(array))).toEqual([7, 8, 55])
     })
 
     test("cast 3: ", () => {
         const array = [7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7]
-        expect(JSON.stringify(findThreeLargestNumbers(array)) ===
-            JSON.stringify([7, 7, 7])).toBe(true)
+        expect((findThreeLargestNumbers(array))).toEqual([7, 7, 7])
     })
 
     test("cast 4: ", () => {
         const array = [7, 7, 7, 7, 7, 7, 8, 7, 7, 7, 7]
-        expect(JSON.stringify(findThreeLargestNumbers(array)) ===
-            JSON.stringify([7, 7, 8])).toBe(true)
+        expect((findThreeLargestNumbers(array))).toEqual([7, 7, 8])
     })
 })
 
