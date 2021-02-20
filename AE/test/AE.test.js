@@ -214,7 +214,7 @@ describe("Find the largest three numbers:", () => {
 
 
 import { isPalindrome } from "../string/Palindrome"
-describe("Find the largest three numbers:", () => {
+describe("Check is a string is a palindrome:", () => {
     test("cast 1: a palindrome", () => {
         expect(isPalindrome("abcdcba")).toBe(true)
     })
@@ -225,6 +225,22 @@ describe("Find the largest three numbers:", () => {
 
     test("cast 3: a single-character palindrome", () => {
         expect(isPalindrome("a")).toBe(true)
+    })
+})
+
+
+import { caesarCipherEncryptor } from "../string/CaesarCiperEncryptor"
+describe("A caesar cipher encryptor:", () => {
+    test("cast 1: key is <26", () => {
+        expect(caesarCipherEncryptor("iwufqnkqkqoolxz", 25)).toBe("hvtepmjpjpnnkwy")
+    })
+
+    test("cast 2: key is >26", () => {
+        expect(caesarCipherEncryptor("iwufqnkqkqoolxz", 27)).toBe("jxvgrolrlrppmya")
+    })
+
+    test("cast 3: key is a multiple of 26", () => {
+        expect(caesarCipherEncryptor("iwufqnkqkqoolxz", 52)).toBe("iwufqnkqkqoolxz")
     })
 })
 
