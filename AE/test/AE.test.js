@@ -1,5 +1,9 @@
 import {describe, expect, test} from "@jest/globals";
 
+/****************
+ Array
+ ****************/
+
 
 import { isValidSubsequence, isValidSubsequence2 } from "../array/ValidateSubsequence"
 describe("Validate subsequence: ", () => {
@@ -25,6 +29,40 @@ describe("Validate subsequence: ", () => {
         expect(isValidSubsequence2(array, sequence)).toBe(true)
     })
 })
+
+
+import { findThreeLargestNumbers } from "../search/LargestThreeNumber"
+describe("Find the largest three numbers:", () => {
+    test("cast 1: ", () => {
+        const array = [141, 1, 17, -7, -17, -27, 18, 541, 8, 7, 7]
+        expect((findThreeLargestNumbers(array))).toEqual([18, 141, 541])
+    })
+
+    test("cast 2: ", () => {
+        const array = [55, 7, 8]
+        expect((findThreeLargestNumbers(array))).toEqual([7, 8, 55])
+    })
+
+    test("cast 3: ", () => {
+        const array = [7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7]
+        expect((findThreeLargestNumbers(array))).toEqual([7, 7, 7])
+    })
+
+    test("cast 4: ", () => {
+        const array = [7, 7, 7, 7, 7, 7, 8, 7, 7, 7, 7]
+        expect((findThreeLargestNumbers(array))).toEqual([7, 7, 8])
+    })
+})
+
+
+/****************
+ Linked list
+ ****************/
+
+
+/****************
+ Recursion
+ ****************/
 
 
 import { getNthFib, getNthFib2 } from "../recursion/NthFibonacci";
@@ -54,6 +92,42 @@ describe("Nth Fibonacci Number: ", () => {
         expect(getNthFib2(n)).toBe(987)
     })
 })
+
+
+import { productSum } from "../recursion/ProductSum"
+describe("Product Sum:", () => {
+    test("cast 1:", () => {
+        expect(productSum([5, 2, [7, -1], 3, [6, [-13, 8], 4]])).toBe(12)
+    })
+
+    test("cast 2:", () => {
+        expect(productSum([1, 2, 3, 4, 5])).toBe(15)
+    })
+
+    test("cast 3:", () => {
+        expect(productSum([[[[[5]]]]])).toBe(600)
+    })
+
+    test("cast 4:", () => {
+        expect(productSum([1, 2, [3], 4, 5])).toBe(18)
+    })
+
+    test("cast 5:", () => {
+        expect(productSum([9, [2, -3, 4], 1, [1, 1, [1, 1, 1]], [[[[3, 4, 1]]], 8],
+            [1, 2, 3, 4, 5, [6, 7], -7], [1, [2, 3, [4, 5]], [6, 0, [7, 0, -8]], -7],
+            [1, -3, 2, [1, -3, 2, [1, -3, 2], [1, -3, 2, [1, -3, 2]], [1, -3, 2]]], -3
+        ])).toBe(1351)
+    })
+})
+
+
+/****************
+ Search
+ ****************/
+
+/****************
+ Sort
+ ****************/
 
 
 import { bubbleSort, bubbleSort2 } from "../sort/BubbleSort"
@@ -184,28 +258,9 @@ describe("Three number order sort:", () => {
 })
 
 
-import { findThreeLargestNumbers } from "../search/LargestThreeNumber"
-describe("Find the largest three numbers:", () => {
-    test("cast 1: ", () => {
-        const array = [141, 1, 17, -7, -17, -27, 18, 541, 8, 7, 7]
-        expect((findThreeLargestNumbers(array))).toEqual([18, 141, 541])
-    })
-
-    test("cast 2: ", () => {
-        const array = [55, 7, 8]
-        expect((findThreeLargestNumbers(array))).toEqual([7, 8, 55])
-    })
-
-    test("cast 3: ", () => {
-        const array = [7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7]
-        expect((findThreeLargestNumbers(array))).toEqual([7, 7, 7])
-    })
-
-    test("cast 4: ", () => {
-        const array = [7, 7, 7, 7, 7, 7, 8, 7, 7, 7, 7]
-        expect((findThreeLargestNumbers(array))).toEqual([7, 7, 8])
-    })
-})
+/****************
+ String
+ ****************/
 
 
 import { isPalindrome } from "../string/Palindrome"
@@ -240,28 +295,12 @@ describe("A caesar cipher encryptor:", () => {
 })
 
 
-import { productSum } from "../recursion/ProductSum"
-describe("Product Sum:", () => {
-    test("cast 1:", () => {
-        expect(productSum([5, 2, [7, -1], 3, [6, [-13, 8], 4]])).toBe(12)
-    })
 
-    test("cast 2:", () => {
-        expect(productSum([1, 2, 3, 4, 5])).toBe(15)
-    })
 
-    test("cast 3:", () => {
-        expect(productSum([[[[[5]]]]])).toBe(600)
-    })
 
-    test("cast 4:", () => {
-        expect(productSum([1, 2, [3], 4, 5])).toBe(18)
-    })
 
-    test("cast 5:", () => {
-        expect(productSum([9, [2, -3, 4], 1, [1, 1, [1, 1, 1]], [[[[3, 4, 1]]], 8],
-            [1, 2, 3, 4, 5, [6, 7], -7], [1, [2, 3, [4, 5]], [6, 0, [7, 0, -8]], -7],
-            [1, -3, 2, [1, -3, 2, [1, -3, 2], [1, -3, 2, [1, -3, 2]], [1, -3, 2]]], -3
-        ])).toBe(1351)
-    })
-})
+
+
+
+
+
