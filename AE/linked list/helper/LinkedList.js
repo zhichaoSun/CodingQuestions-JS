@@ -14,15 +14,6 @@ export class LinkedList {
     }
 
     /***
-     * get the head
-     * @returns {Node}
-     */
-    getHeadNode() {
-        return this.head
-    }
-
-
-    /***
      * add a node at the end of the linked list
      * @param value
      */
