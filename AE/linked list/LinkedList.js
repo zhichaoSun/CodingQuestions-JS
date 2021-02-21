@@ -13,6 +13,14 @@ export class LinkedList {
         this.size = 0
     }
 
+    /***
+     * get the head
+     * @returns {Node}
+     */
+    getHeadNode() {
+        return this.head
+    }
+
 
     /***
      * add a node at the end of the linked list
@@ -138,6 +146,10 @@ export class LinkedList {
     }
 
 
+    /***
+     * convert this linked list to an object
+     * @returns {object}
+     */
     linkedListToObject() {
         const object = {
             "linkedList": {
@@ -148,9 +160,10 @@ export class LinkedList {
 
         if(this.isEmpty()) return object
         else {
-            object.linkedList.head = "0"
             let curr = this.head, i = 0
+            object.linkedList.head = curr.value.toString()
             while(curr) {
+                console.log("curr value: ", curr.value)
                 object.linkedList.nodes[i] = {
                     "id": `${i}`,
                     "next": curr.next ? `${i+1}` : null,
