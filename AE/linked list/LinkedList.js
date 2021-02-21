@@ -129,11 +129,37 @@ export class LinkedList {
      * print all the value form head to tail
      */
     printList() {
-        let node = this.head, str = ""
-        while(node) {
-            str += node.value + (node.next && " -> ")
-            node = node.next
+        let curr = this.head, str = ""
+        while(curr) {
+            str += curr.value + (curr.next && " -> ")
+            curr = curr.next
         }
         console.log(str)
+    }
+
+
+    linkedListToObject() {
+        const object = {
+            "linkedList": {
+                "head": null,
+                "nodes": []
+            }
+        }
+
+        if(this.isEmpty()) return object
+        else {
+            object.linkedList.head = "0"
+            let curr = this.head, i = 0
+            while(curr) {
+                object.linkedList.nodes[i] = {
+                    "id": `${i}`,
+                    "next": curr.next ? `${i+1}` : null,
+                    "value": curr.value
+                }
+                curr = curr.next
+                i++
+            }
+        }
+        return object
     }
 }
