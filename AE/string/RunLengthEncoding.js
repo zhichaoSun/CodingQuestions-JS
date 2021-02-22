@@ -42,6 +42,8 @@
  */
 export function runLengthEncoding(string) {
     let counts = [], count = 1, index = -1, cipher = ""
+
+    // count the occurrence of each char, store these counts in counts array
     for(let i = 0; i < string.length; i++) {
         if(string[i] === string[i-1]) {
             count++
@@ -54,6 +56,8 @@ export function runLengthEncoding(string) {
         }
     }
 
+    // traverse the counts array, create a new string cipher
+    // when count > 0, divide by 9 to get its quotient and remainder
     for(let i = 0; i < counts.length; i++) {
         const si = counts.slice(0, i).reduce((a, b) => a+b, 0)
         if(count[i] <= 9) {
@@ -70,4 +74,38 @@ export function runLengthEncoding(string) {
     }
 
     return cipher
+}
+
+
+/***
+ *
+ * Another solution, more readable
+ *
+ * O(N) time complexity
+ * O(1) aux space
+ *
+ * @param string
+ * @returns {string} encoded string
+ *
+ */
+export function runLengthEncoding2(string) {
+    let cipher = [], ci = 0, count = 1
+
+    for(let i = 0; i < string.length; i++) {
+
+        if(string[i] === string[i-1] && count <= 9) {
+            cipher[ci] = count
+            cipher[ci+1] = string[i]
+        }
+        // when current char !== previous char, start another round of calculation
+        else {
+            count = 1
+            if(i!==0) ci+=2
+            cipher[ci] = count
+            cipher[ci+1] = string[i]
+        }
+        count++
+    }
+
+    return cipher.join("")
 }
