@@ -146,11 +146,42 @@ class DoublyLinkedList {
     }
 
     remove(node) {
-        // TODO
+        if(!this.containsNodeWithValue(node?.value)) return false
+
+        let curr = this.head
+        while(curr) {
+            if(curr === node) {
+                if(this.length === 1) {
+                    this.head = null
+                    this.tail = null
+                    return true
+                } else {
+                    if(this.head === node) {
+                        this.head = node.next
+                        this.head.prev = null
+                        node.next = null
+                        return true
+                    } else if(this.tail === node) {
+                        this.tail = node.prev
+                        this.tail.next = null
+                        node.prev = null
+                        return true
+                    } else {
+                        node.prev.next = node.next
+                        node.next.prev = node.prev
+                        node.prev = null
+                        node.next = null
+                        return true
+                    }
+                }
+            }
+            curr = curr.next
+        }
+        return false
     }
 
     containsNodeWithValue(value) {
-        if(!this.head) return false
+        if(!this.head || value === undefined) return false
 
         let curr = this.head
         while(curr) {
@@ -178,3 +209,6 @@ dll.printHeadToTail()
 dll.printTailToHead()
 
 console.log(dll.containsNodeWithValue(0))
+
+dll.remove(dll.tail)
+dll.printHeadToTail()
