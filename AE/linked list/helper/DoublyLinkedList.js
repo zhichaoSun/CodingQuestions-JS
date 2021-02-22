@@ -127,6 +127,30 @@ class DoublyLinkedList {
     }
 
 
+    removeHead() {
+        if(!this.length) return false
+
+        let curr = this.head
+        this.head = this.head.next
+        this.head.prev = null
+        curr.next = null
+
+        this.length--
+    }
+
+
+    removeTail() {
+        if(!this.length) return false
+
+        let curr = this.tail
+        this.tail = this.tail.prev
+        this.tail.next = null
+        curr.prev = null
+
+        this.length--
+    }
+
+
     setHead(node) {
         // TODO
     }
@@ -152,9 +176,23 @@ class DoublyLinkedList {
     }
 
 
-    removeNodesWithValue(value) {
-        // TODO
-    }
+    // removeNodesWithValue(value) {
+    //     if(!this.containsNodeWithValue(value)) return false
+    //
+    //     let curr = this.head
+    //     while(curr) {
+    //         if(curr.value === value) {
+    //             if(curr === this.head) {
+    //                 if(this.length === 1) {
+    //                     this.head = null
+    //                     this.tail = null
+    //                     this.length--
+    //                     return true
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }
 
 
     remove(node) {
