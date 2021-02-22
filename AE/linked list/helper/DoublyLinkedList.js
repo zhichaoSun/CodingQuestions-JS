@@ -176,23 +176,19 @@ class DoublyLinkedList {
     }
 
 
-    // removeNodesWithValue(value) {
-    //     if(!this.containsNodeWithValue(value)) return false
-    //
-    //     let curr = this.head
-    //     while(curr) {
-    //         if(curr.value === value) {
-    //             if(curr === this.head) {
-    //                 if(this.length === 1) {
-    //                     this.head = null
-    //                     this.tail = null
-    //                     this.length--
-    //                     return true
-    //                 }
-    //             }
-    //         }
-    //     }
-    // }
+    removeNodesWithValue(value) {
+        if(!this.head || value === undefined) return false
+
+        let curr = this.head, next
+        while(curr) {
+            next = curr.next
+            if(curr.value === value) {
+                this.remove(curr)
+            }
+            curr = next
+        }
+        return false
+    }
 
 
     remove(node) {
@@ -240,23 +236,33 @@ const head  = new Node(1)
 const node2 = new Node(2)
 const node3 = new Node(3)
 const node4 = new Node(4)
+const node5 = new Node(4)
+const node6 = new Node(4)
+const node7 = new Node(4)
 const tail  = new Node(5)
 
 dll.push(head)
 dll.push(node2)
 dll.push(node3)
 dll.push(node4)
+dll.push(node5)
+dll.push(node6)
+dll.push(node7)
 dll.push(tail)
 
+console.log("-----------------")
+console.log("dll length:", dll.length)
 dll.printHeadToTail()
-dll.printTailToHead()
-
-console.log(dll.containsNodeWithValue(1))
-console.log(dll.containsNodeWithValue(0))
-
-dll.remove(dll.tail)
-console.log("length:", dll.length)
-dll.remove(dll.tail)
-console.log("length:", dll.length)
-
+console.log("-----------------")
+console.log("Contain 1:", dll.containsNodeWithValue(1))
+console.log("-----------------")
+console.log("Remove dll.tail.prev")
+dll.remove(dll.tail.prev)
 dll.printHeadToTail()
+console.log("-----------------")
+console.log("Remove all 4:")
+dll.removeNodesWithValue(4)
+dll.printHeadToTail()
+console.log("-----------------")
+
+
