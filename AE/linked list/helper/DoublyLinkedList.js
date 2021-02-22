@@ -127,30 +127,6 @@ class DoublyLinkedList {
     }
 
 
-    removeHead() {
-        if(!this.length) return false
-
-        let curr = this.head
-        this.head = this.head.next
-        this.head.prev = null
-        curr.next = null
-
-        this.length--
-    }
-
-
-    removeTail() {
-        if(!this.length) return false
-
-        let curr = this.tail
-        this.tail = this.tail.prev
-        this.tail.next = null
-        curr.prev = null
-
-        this.length--
-    }
-
-
     setHead(node) {
         // TODO
     }
