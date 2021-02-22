@@ -294,6 +294,36 @@ describe("A caesar cipher encryptor:", () => {
     })
 })
 
+import { runLengthEncoding } from "../string/RunLengthEncoding"
+describe("Run-length encoder:", () => {
+    test("cast 1: ", () => {
+        expect(runLengthEncoding("AAAAAAAAAAAAABCCCCDD")).toBe("9A4A1B4C2D")
+    })
+
+    test("cast 2: ", () => {
+        expect(runLengthEncoding("aA")).toBe("1a1A")
+    })
+
+    test("cast 3: ", () => {
+        expect(runLengthEncoding("122333")).toBe("112233")
+    })
+
+    test("cast 4: ", () => {
+        expect(runLengthEncoding("aA")).toBe("1a1A")
+    })
+
+    test("cast 5: ", () => {
+        expect(
+            runLengthEncoding("************^^^^^^^$$$$$$%%%%%%%!!!!!!AAAAAAAAAAAAAAAAAAAA")
+        ).toBe("9*3*7^6$7%6!9A9A2A")
+    })
+
+    test("cast 6: ", () => {
+        expect(
+            runLengthEncoding("                          ")
+        ).toBe("9 9 8 ")
+    })
+})
 
 
 
