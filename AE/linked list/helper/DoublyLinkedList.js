@@ -102,6 +102,24 @@ class DoublyLinkedList {
         this.length--
     }
 
+    printHeadToTail() {
+        let curr = this.head, str = ""
+        while(curr) {
+            str += (curr.value + (curr.next && " <-> "))
+            curr = curr.next
+        }
+        console.log(str)
+    }
+
+    printTailToHead() {
+        let curr = this.tail, str = ""
+        while(curr) {
+            str += (curr.value + (curr.prev && " <-> "))
+            curr = curr.prev
+        }
+        console.log(str)
+    }
+
 
     setHead(node) {
         // TODO
@@ -147,13 +165,7 @@ dll.push(head)
 dll.push(node2)
 dll.push(node3)
 dll.push(node4)
-dll.unshift(tail)
-dll.shift()
+dll.push(tail)
 
-;(function p(head = dll.head) {
-    let curr = head
-    while(curr) {
-        console.log(curr.value)
-        curr = curr.next
-    }
-}) ()
+dll.printHeadToTail()
+dll.printTailToHead()
