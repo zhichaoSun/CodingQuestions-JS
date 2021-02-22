@@ -150,7 +150,14 @@ class DoublyLinkedList {
     }
 
     containsNodeWithValue(value) {
-        // TODO
+        if(!this.head) return false
+
+        let curr = this.head
+        while(curr) {
+            if(curr.value === value) return true
+            curr = curr.next
+        }
+        return false
     }
 }
 
@@ -169,3 +176,5 @@ dll.push(tail)
 
 dll.printHeadToTail()
 dll.printTailToHead()
+
+console.log(dll.containsNodeWithValue(0))
