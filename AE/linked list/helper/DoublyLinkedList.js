@@ -192,23 +192,22 @@ class DoublyLinkedList {
 
 
     remove(node) {
-        if(!this.containsNodeWithValue(node?.value)) return false
+        if(!this.head || !node) return false
 
         let curr = this.head
         while(curr) {
             if(curr === node) {
-                if(this.head === curr) {
+                if(curr === this.head ) {
                     this.shift()
-                    node.next = null
                     return true
-                } else if(this.tail === curr) {
+                } else if (curr === this.tail) {
                     this.pop()
                     return true
                 } else {
-                    node.prev.next = node.next
-                    node.next.prev = node.prev
-                    node.prev = null
-                    node.next = null
+                    curr.prev.next = curr.next
+                    curr.next.prev = curr.prev
+                    curr.prev = null
+                    curr.next = null
                     this.length--
                     return true
                 }
