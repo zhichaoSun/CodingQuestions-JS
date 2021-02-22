@@ -47,6 +47,7 @@ class DoublyLinkedList {
         this.length = 0
     }
 
+
     push(node) {
         if(!this.tail) {
             this.tail = node
@@ -59,6 +60,7 @@ class DoublyLinkedList {
         }
         this.length++
     }
+
 
     pop() {
         if(!this.length) return false
@@ -75,6 +77,7 @@ class DoublyLinkedList {
         this.length--
     }
 
+
     unshift(node) {
         if(!this.head) {
             this.head = node
@@ -86,6 +89,7 @@ class DoublyLinkedList {
         }
         this.length++
     }
+
 
     shift() {
         if(!this.length) return false
@@ -102,6 +106,7 @@ class DoublyLinkedList {
         this.length--
     }
 
+
     printHeadToTail() {
         let curr = this.head, str = ""
         while(curr) {
@@ -110,6 +115,7 @@ class DoublyLinkedList {
         }
         console.log(str)
     }
+
 
     printTailToHead() {
         let curr = this.tail, str = ""
@@ -125,25 +131,31 @@ class DoublyLinkedList {
         // TODO
     }
 
+
     setTail(node) {
         // TODO
     }
+
 
     insertBefore(node, nodeToInsert) {
         // TODO
     }
 
+
     insertAfter(node, nodeToInsert) {
         // TODO
     }
+
 
     insertAtPosition(position, nodeToInsert) {
         // TODO
     }
 
+
     removeNodesWithValue(value) {
         // TODO
     }
+
 
     remove(node) {
         if(!this.containsNodeWithValue(node?.value)) return false
@@ -154,8 +166,10 @@ class DoublyLinkedList {
                 if(this.length === 1) {
                     this.head = null
                     this.tail = null
+                    this.length--
                     return true
                 } else {
+                    this.length--
                     if(this.head === node) {
                         this.head = node.next
                         this.head.prev = null
@@ -179,6 +193,7 @@ class DoublyLinkedList {
         }
         return false
     }
+
 
     containsNodeWithValue(value) {
         if(!this.head || value === undefined) return false
