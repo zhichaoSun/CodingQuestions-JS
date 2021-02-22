@@ -295,21 +295,24 @@ describe("A caesar cipher encryptor:", () => {
 })
 
 
-import { runLengthEncoding, runLengthEncoding2 } from "../string/RunLengthEncoding"
+import { runLengthEncoding, runLengthEncoding2, runLengthEncoding3 } from "../string/RunLengthEncoding"
 describe("Run-length encoder:", () => {
     test("cast 1: ", () => {
         expect(runLengthEncoding("AAAAAAAAAAAAABCCCCDD")).toBe("9A4A1B4C2D")
         expect(runLengthEncoding2("AAAAAAAAAAAAABCCCCDD")).toBe("9A4A1B4C2D")
+        expect(runLengthEncoding3("AAAAAAAAAAAAABCCCCDD")).toBe("9A4A1B4C2D")
     })
 
     test("cast 2: ", () => {
         expect(runLengthEncoding("aA")).toBe("1a1A")
         expect(runLengthEncoding2("aA")).toBe("1a1A")
+        expect(runLengthEncoding3("aA")).toBe("1a1A")
     })
 
     test("cast 3: ", () => {
         expect(runLengthEncoding("122333")).toBe("112233")
         expect(runLengthEncoding2("122333")).toBe("112233")
+        expect(runLengthEncoding3("122333")).toBe("112233")
     })
 
     test("cast 4: ", () => {
@@ -318,6 +321,9 @@ describe("Run-length encoder:", () => {
         ).toBe("9;3;9'9'2'111273524142311s")
         expect(
             runLengthEncoding2(";;;;;;;;;;;;''''''''''''''''''''1233333332222211112222111s")
+        ).toBe("9;3;9'9'2'111273524142311s")
+        expect(
+            runLengthEncoding3(";;;;;;;;;;;;''''''''''''''''''''1233333332222211112222111s")
         ).toBe("9;3;9'9'2'111273524142311s")
     })
 
@@ -328,6 +334,9 @@ describe("Run-length encoder:", () => {
         expect(
             runLengthEncoding2("************^^^^^^^$$$$$$%%%%%%%!!!!!!AAAAAAAAAAAAAAAAAAAA")
         ).toBe("9*3*7^6$7%6!9A9A2A")
+        expect(
+            runLengthEncoding3("************^^^^^^^$$$$$$%%%%%%%!!!!!!AAAAAAAAAAAAAAAAAAAA")
+        ).toBe("9*3*7^6$7%6!9A9A2A")
     })
 
     test("cast 6: ", () => {
@@ -336,6 +345,9 @@ describe("Run-length encoder:", () => {
         ).toBe("9 9 8 ")
         expect(
             runLengthEncoding2("                          ")
+        ).toBe("9 9 8 ")
+        expect(
+            runLengthEncoding3("                          ")
         ).toBe("9 9 8 ")
     })
 })

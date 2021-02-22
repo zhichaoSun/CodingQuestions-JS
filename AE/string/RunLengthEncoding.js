@@ -109,3 +109,34 @@ export function runLengthEncoding2(string) {
 
     return cipher.join("")
 }
+
+
+/***
+ *
+ * A more elegant solution, concept is the same as solution2
+ *
+ * O(N) time complexity
+ * O(N) aux space
+ *
+ * @param string
+ * @returns {string} encoded string
+ *
+ */
+export function runLengthEncoding3(string) {
+    let cipher = [], count = 1
+
+    for(let i = 1; i < string.length; i++) {
+        let prevChar = string[i-1]
+        let currChar = string[i]
+        if(prevChar !== currChar || count === 9) {
+            cipher.push(count)
+            cipher.push(prevChar)
+            count = 0
+        }
+        count++
+    }
+    cipher.push(count)
+    cipher.push(string[string.length - 1])
+
+    return cipher.join("")
+}
