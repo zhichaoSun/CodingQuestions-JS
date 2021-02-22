@@ -163,30 +163,20 @@ class DoublyLinkedList {
         let curr = this.head
         while(curr) {
             if(curr === node) {
-                if(this.length === 1) {
-                    this.head = null
-                    this.tail = null
-                    this.length--
+                if(this.head === curr) {
+                    this.shift()
+                    node.next = null
+                    return true
+                } else if(this.tail === curr) {
+                    this.pop()
                     return true
                 } else {
+                    node.prev.next = node.next
+                    node.next.prev = node.prev
+                    node.prev = null
+                    node.next = null
                     this.length--
-                    if(this.head === node) {
-                        this.head = node.next
-                        this.head.prev = null
-                        node.next = null
-                        return true
-                    } else if(this.tail === node) {
-                        this.tail = node.prev
-                        this.tail.next = null
-                        node.prev = null
-                        return true
-                    } else {
-                        node.prev.next = node.next
-                        node.next.prev = node.prev
-                        node.prev = null
-                        node.next = null
-                        return true
-                    }
+                    return true
                 }
             }
             curr = curr.next
@@ -207,12 +197,12 @@ class DoublyLinkedList {
     }
 }
 
-const dll = new DoublyLinkedList()
-const head = new Node(1)
+const dll   = new DoublyLinkedList()
+const head  = new Node(1)
 const node2 = new Node(2)
 const node3 = new Node(3)
 const node4 = new Node(4)
-const tail = new Node(5)
+const tail  = new Node(5)
 
 dll.push(head)
 dll.push(node2)
@@ -223,7 +213,12 @@ dll.push(tail)
 dll.printHeadToTail()
 dll.printTailToHead()
 
+console.log(dll.containsNodeWithValue(1))
 console.log(dll.containsNodeWithValue(0))
 
 dll.remove(dll.tail)
+console.log("length:", dll.length)
+dll.remove(dll.tail)
+console.log("length:", dll.length)
+
 dll.printHeadToTail()
