@@ -34,7 +34,7 @@
  * then transfer this counts into the encoded string
  *
  * O(N) time complexity
- * O(1) aux space
+ * O(N) aux space
  *
  * @param string
  * @returns {string} encoded string
@@ -82,7 +82,7 @@ export function runLengthEncoding(string) {
  * Another solution, more readable
  *
  * O(N) time complexity
- * O(1) aux space
+ * O(N) aux space
  *
  * @param string
  * @returns {string} encoded string
