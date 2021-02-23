@@ -285,6 +285,13 @@ dll.setHead(new Node(888))
 console.log("dll [setHead(new Node(888))]:")
 dll.printHeadToTail()
 console.log("-----------------")
+dll.setTail(dll.head.next.next)
+console.log("dll [setTail(dll.head.next.next)]:")
+dll.printHeadToTail()
+dll.setTail(new Node(999))
+console.log("dll [setTail(new Node(999))]:")
+dll.printHeadToTail()
+console.log("-----------------")
 
 
 
