@@ -1,4 +1,4 @@
-import { LinkedList } from "./LinkedList.js";
+import { LinkedList } from "../construction/LinkedList.js";
 
 export function objectToLinkedList(object, ll = new LinkedList()) {
     const nodes = object.linkedList.nodes
