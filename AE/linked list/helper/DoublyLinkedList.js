@@ -194,6 +194,18 @@ class DoublyLinkedList {
     }
 
 
+    containsNode(node) {
+        if(!this.length) return false
+
+        let curr = this.head
+        while(curr) {
+            if(curr === node) return true
+            curr = curr.next
+        }
+        return false
+    }
+
+
     containsNodeWithValue(value) {
         if(!this.head || value === undefined) return false
 
