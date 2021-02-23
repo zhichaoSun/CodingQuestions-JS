@@ -147,7 +147,15 @@ class DoublyLinkedList {
 
 
     setTail(node) {
-        // TODO
+        if(!node) return false
+
+        // check if the node is in this list already
+        if(this.containsNode(node)) {
+            this.remove(node)
+        }
+
+        this.push(node)
+        return true
     }
 
 
