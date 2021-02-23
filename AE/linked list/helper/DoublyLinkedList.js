@@ -160,12 +160,60 @@ class DoublyLinkedList {
 
 
     insertBefore(node, nodeToInsert) {
-        // TODO
+        if(!node || !nodeToInsert) return false
+
+        if(this.containsNode(nodeToInsert)) {
+            this.remove(nodeToInsert)
+        }
+
+        let curr = this.head
+        while(curr) {
+            if(curr === node) {
+                if(curr === this.head) {
+                    this.unshift(nodeToInsert)
+                    return true
+                }
+
+                let prev = curr.prev
+                prev.next = nodeToInsert
+                nodeToInsert.prev = prev
+                curr.prev = nodeToInsert
+                nodeToInsert.next = curr
+                this.length++
+                return true
+            }
+            curr = curr.next
+        }
+        return false
     }
 
 
     insertAfter(node, nodeToInsert) {
-        // TODO
+        if(!node || !nodeToInsert) return false
+
+        if(this.containsNode(nodeToInsert)) {
+            this.remove(nodeToInsert)
+        }
+
+        let curr = this.tail
+        while(curr) {
+            if(curr === node) {
+                if(curr === this.tail) {
+                    this.push(nodeToInsert)
+                    return true
+                }
+
+                let next = curr.next
+                next.prev = nodeToInsert
+                nodeToInsert.next = next
+                curr.next = nodeToInsert
+                nodeToInsert.prev = curr
+                this.length++
+                return true
+            }
+            curr = curr.prev
+        }
+        return false
     }
 
 
@@ -292,6 +340,12 @@ dll.setTail(new Node(999))
 console.log("dll [setTail(new Node(999))]:")
 dll.printHeadToTail()
 console.log("-----------------")
+console.log("dll [insertBefore(dll.tail.prev, dll.tail)]")
+dll.insertBefore(dll.tail.prev, dll.tail)
+dll.printHeadToTail()
+console.log("dll [insertAfter(dll.tail.prev, dll.tail)]")
+dll.insertAfter(dll.tail, dll.tail.prev)
+dll.printHeadToTail()
 
 
 
