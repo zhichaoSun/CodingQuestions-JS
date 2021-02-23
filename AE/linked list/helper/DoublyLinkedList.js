@@ -128,7 +128,15 @@ class DoublyLinkedList {
 
 
     setHead(node) {
-        // TODO
+        if(!node) return false
+
+        // check if the node is in this list already
+        if(this.containsNode(node)) {
+            this.remove(node)
+        }
+
+        this.unshift(node)
+        return true
     }
 
 
