@@ -49,3 +49,36 @@ function removeKthNodeFromEnd(head, k) {
     }
     prev.next = curr.next
 }
+
+
+/***
+ *
+ * Another interesting solution.
+ *   1. Set 2 node,
+ *   2. the early-go one traverse over the linked list to (k+1)th node,
+ *   3. if now the early-go node === null --> k === length, just remove the head
+ *   4. now start traversing both early-go and late-go
+ *   5. when early-go === tail --> late-go.next if the node to be removed
+ *   6. remove the late-go.next
+ *
+ * @param head
+ * @param k
+ *
+ */
+function removeKthNodeFromEnd2(head, k) {
+    let early = head, late = head
+    while(k--) early = early.next
+
+    if(!early) {
+        head.value = head.next.value
+        head.next = head.next.next
+        return
+    }
+
+    while(early.next) {
+        early = early.next
+        late = late.next
+    }
+
+    late.next = late.next.next
+}
