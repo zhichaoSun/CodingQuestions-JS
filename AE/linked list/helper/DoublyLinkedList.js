@@ -59,12 +59,11 @@ class DoublyLinkedList {
             this.tail = node
         }
         this.length++
-        return true
     }
 
 
     pop() {
-        if(!this.length) return false
+        if(!this.length) return
 
         const newTail = this.tail.prev
         if(newTail) {
@@ -76,7 +75,6 @@ class DoublyLinkedList {
 
         this.tail = newTail
         this.length--
-        return true
     }
 
 
@@ -90,12 +88,11 @@ class DoublyLinkedList {
             this.head = node
         }
         this.length++
-        return true
     }
 
 
     shift() {
-        if(!this.length) return false
+        if(!this.length) return
 
         const newHead = this.head.next
         if(newHead) {
@@ -107,12 +104,12 @@ class DoublyLinkedList {
 
         this.head = newHead
         this.length--
-        return true
     }
 
 
     printHeadToTail() {
-        if(!this.length) return false
+        if(!this.length) return
+
         let curr = this.head, str = ""
         while(curr) {
             str += (curr.value + (curr.next && " <-> "))
@@ -123,7 +120,8 @@ class DoublyLinkedList {
 
 
     printTailToHead() {
-        if(!this.length) return false
+        if(!this.length) return
+
         let curr = this.tail, str = ""
         while(curr) {
             str += (curr.value + (curr.prev && " <-> "))
@@ -134,7 +132,7 @@ class DoublyLinkedList {
 
 
     setHead(node) {
-        if(!node) return false
+        if(!node) return
 
         // check if the node is in this list already
         if(this.containsNode(node)) {
@@ -142,12 +140,11 @@ class DoublyLinkedList {
         }
 
         this.unshift(node)
-        return true
     }
 
 
     setTail(node) {
-        if(!node) return false
+        if(!node) return
 
         // check if the node is in this list already
         if(this.containsNode(node)) {
@@ -155,12 +152,11 @@ class DoublyLinkedList {
         }
 
         this.push(node)
-        return true
     }
 
 
     insertBefore(node, nodeToInsert) {
-        if(!node || !nodeToInsert) return false
+        if(!node || !nodeToInsert) return
 
         if(this.containsNode(nodeToInsert)) {
             this.remove(nodeToInsert)
@@ -171,7 +167,7 @@ class DoublyLinkedList {
             if(curr === node) {
                 if(curr === this.head) {
                     this.unshift(nodeToInsert)
-                    return true
+                    return
                 }
 
                 let prev = curr.prev
@@ -180,16 +176,15 @@ class DoublyLinkedList {
                 curr.prev = nodeToInsert
                 nodeToInsert.next = curr
                 this.length++
-                return true
+                return
             }
             curr = curr.next
         }
-        return false
     }
 
 
     insertAfter(node, nodeToInsert) {
-        if(!node || !nodeToInsert) return false
+        if(!node || !nodeToInsert) return
 
         if(this.containsNode(nodeToInsert)) {
             this.remove(nodeToInsert)
@@ -200,7 +195,7 @@ class DoublyLinkedList {
             if(curr === node) {
                 if(curr === this.tail) {
                     this.push(nodeToInsert)
-                    return true
+                    return
                 }
 
                 let next = curr.next
@@ -209,40 +204,34 @@ class DoublyLinkedList {
                 curr.next = nodeToInsert
                 nodeToInsert.prev = curr
                 this.length++
-                return true
+                return
             }
             curr = curr.prev
         }
-        return false
     }
 
 
     insertAtPosition(position, nodeToInsert) {
-        if(position > this.length + 1 || !position || !nodeToInsert) return false
+        if(position > this.length + 1 || !position || !nodeToInsert)
+            return
 
-        if(this.containsNode(nodeToInsert)) {
-            if(position > this.length) return false
-            this.remove(nodeToInsert)
+        if(position === 1) {
+            this.setHead(nodeToInsert)
+            return
         }
 
-        let curr = this.head, currPos = 1
-        while(currPos <= position) {
-            if(currPos === position) {
-                if(position === this.length + 1) {
-                    this.push(nodeToInsert)
-                    return true
-                }
-                this.insertBefore(curr, nodeToInsert)
-                return true
-            }
-            currPos++
+        let curr = this.head, currPost = 1
+        while(curr && currPost++ < position)
             curr = curr.next
-        }
+
+        if(curr) this.insertBefore(curr, nodeToInsert)
+        else this.setTail(nodeToInsert)
+
     }
 
 
     removeNodesWithValue(value) {
-        if(!this.head || value === undefined) return false
+        if(!this.head || value === undefined) return
 
         let curr = this.head, next, removed = 0
         while(curr) {
@@ -253,33 +242,31 @@ class DoublyLinkedList {
             }
             curr = next
         }
-        return removed !== 0
     }
 
 
     remove(node) {
-        if(!this.head || !node) return false
+        if(!this.head || !node) return
 
         let curr = this.head
         while(curr) {
             if(curr === node) {
                 if(curr === this.head ) {
                     this.shift()
-                    return true
+                    return
                 } else if (curr === this.tail) {
                     this.pop()
-                    return true
+                    return
                 }
                 curr.prev.next = curr.next
                 curr.next.prev = curr.prev
                 curr.prev = null
                 curr.next = null
                 this.length--
-                return true
+                return
             }
             curr = curr.next
         }
-        return false
     }
 
 
@@ -326,59 +313,57 @@ dll.push(node6)
 dll.push(node7)
 dll.push(tail)
 
-console.log("-----------------")
-console.log("dll [length]:", dll.length)
-dll.printHeadToTail()
-console.log("-----------------")
-console.log("Contain [1]:", dll.containsNodeWithValue(1))
-console.log("-----------------")
-console.log("Remove [dll.tail.prev]:")
-dll.remove(dll.tail.prev)
-dll.printHeadToTail()
-console.log("-----------------")
-console.log("Remove [all 4]:")
+// console.log("-----------------")
+// console.log("dll [length]:", dll.length)
+// dll.printHeadToTail()
+// console.log("-----------------")
+// console.log("Contain [1]:", dll.containsNodeWithValue(1))
+// console.log("-----------------")
+// console.log("Remove [dll.tail.prev]:")
+// dll.remove(dll.tail.prev)
+// dll.printHeadToTail()
+// console.log("-----------------")
+// console.log("Remove [all 4]:")
 dll.removeNodesWithValue(4)
-dll.printHeadToTail()
+// dll.printHeadToTail()
+// console.log("-----------------")
+// const node0 = new Node(2)
+// console.log("dll has [head.next?]", dll.containsNode(dll.head.next))
+// console.log("dll has [const node0 = new Node(2)]?", dll.containsNode(node0))
+// console.log("dll has [node with value 2]?", dll.containsNodeWithValue(2))
+// console.log("-----------------")
+// dll.setHead(dll.head.next.next)
+// console.log("dll [setHead(dll.head.next.next)]:")
+// dll.printHeadToTail()
+// dll.setHead(new Node(888))
+// console.log("dll [setHead(new Node(888))]:")
+// dll.printHeadToTail()
+// console.log("-----------------")
+// dll.setTail(dll.head.next.next)
+// console.log("dll [setTail(dll.head.next.next)]:")
+// dll.printHeadToTail()
+// dll.setTail(new Node(999))
+// console.log("dll [setTail(new Node(999))]:")
+// dll.printHeadToTail()
+// console.log("-----------------")
+// console.log("dll [insertBefore(dll.tail.prev, dll.tail)]")
+// dll.insertBefore(dll.tail.prev, dll.tail)
+// dll.printHeadToTail()
+// console.log("dll [length]:", dll.length)
+// console.log("dll [insertAfter(dll.tail.prev, dll.tail)]")
+// dll.insertAfter(dll.tail, dll.tail.prev)
+// dll.printHeadToTail()
+// console.log("dll [length]:", dll.length)
+// console.log("dll [insertAfter(dll.tail, new Node(111)]")
+// dll.insertAfter(dll.tail, new Node(111))
+// dll.printHeadToTail()
+// console.log("dll [length]:", dll.length)
 console.log("-----------------")
-const node0 = new Node(2)
-console.log("dll has [head.next?]", dll.containsNode(dll.head.next))
-console.log("dll has [const node0 = new Node(2)]?", dll.containsNode(node0))
-console.log("dll has [node with value 2]?", dll.containsNodeWithValue(2))
-console.log("-----------------")
-dll.setHead(dll.head.next.next)
-console.log("dll [setHead(dll.head.next.next)]:")
 dll.printHeadToTail()
-dll.setHead(new Node(888))
-console.log("dll [setHead(new Node(888))]:")
-dll.printHeadToTail()
-console.log("-----------------")
-dll.setTail(dll.head.next.next)
-console.log("dll [setTail(dll.head.next.next)]:")
-dll.printHeadToTail()
-dll.setTail(new Node(999))
-console.log("dll [setTail(new Node(999))]:")
-dll.printHeadToTail()
-console.log("-----------------")
-console.log("dll [insertBefore(dll.tail.prev, dll.tail)]")
-dll.insertBefore(dll.tail.prev, dll.tail)
-dll.printHeadToTail()
-console.log("dll [length]:", dll.length)
-console.log("dll [insertAfter(dll.tail.prev, dll.tail)]")
-dll.insertAfter(dll.tail, dll.tail.prev)
-dll.printHeadToTail()
-console.log("dll [length]:", dll.length)
-console.log("dll [insertAfter(dll.tail, new Node(111)]")
-dll.insertAfter(dll.tail, new Node(111))
-dll.printHeadToTail()
-console.log("dll [length]:", dll.length)
-console.log("-----------------")
 console.log("dll [insertAtPosition(8, new Node(233333))]")
-dll.insertAtPosition(8, new Node(233333))
+dll.insertAtPosition(2, new Node(233333))
 dll.printHeadToTail()
 console.log("dll [insertAtPosition(8, dll.head)]")
-dll.insertAtPosition(8, dll.head)
+dll.insertAtPosition(1, dll.head.next)
 dll.printHeadToTail()
-
-
-
 
