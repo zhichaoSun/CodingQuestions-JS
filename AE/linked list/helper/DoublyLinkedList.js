@@ -218,7 +218,26 @@ class DoublyLinkedList {
 
 
     insertAtPosition(position, nodeToInsert) {
-        // TODO
+        if(position > this.length + 1 || !position || !nodeToInsert) return false
+
+        if(this.containsNode(nodeToInsert)) {
+            if(position > this.length) return false
+            this.remove(nodeToInsert)
+        }
+
+        let curr = this.head, currPos = 1
+        while(currPos <= position) {
+            if(currPos === position) {
+                if(position === this.length + 1) {
+                    this.push(nodeToInsert)
+                    return true
+                }
+                this.insertBefore(curr, nodeToInsert)
+                return true
+            }
+            currPos++
+            curr = curr.next
+        }
     }
 
 
@@ -343,8 +362,21 @@ console.log("-----------------")
 console.log("dll [insertBefore(dll.tail.prev, dll.tail)]")
 dll.insertBefore(dll.tail.prev, dll.tail)
 dll.printHeadToTail()
+console.log("dll [length]:", dll.length)
 console.log("dll [insertAfter(dll.tail.prev, dll.tail)]")
 dll.insertAfter(dll.tail, dll.tail.prev)
+dll.printHeadToTail()
+console.log("dll [length]:", dll.length)
+console.log("dll [insertAfter(dll.tail, new Node(111)]")
+dll.insertAfter(dll.tail, new Node(111))
+dll.printHeadToTail()
+console.log("dll [length]:", dll.length)
+console.log("-----------------")
+console.log("dll [insertAtPosition(8, new Node(233333))]")
+dll.insertAtPosition(8, new Node(233333))
+dll.printHeadToTail()
+console.log("dll [insertAtPosition(8, dll.head)]")
+dll.insertAtPosition(8, dll.head)
 dll.printHeadToTail()
 
 
