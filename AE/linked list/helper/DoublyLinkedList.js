@@ -59,6 +59,7 @@ class DoublyLinkedList {
             this.tail = node
         }
         this.length++
+        return true
     }
 
 
@@ -75,6 +76,7 @@ class DoublyLinkedList {
 
         this.tail = newTail
         this.length--
+        return true
     }
 
 
@@ -88,6 +90,7 @@ class DoublyLinkedList {
             this.head = node
         }
         this.length++
+        return true
     }
 
 
@@ -104,10 +107,12 @@ class DoublyLinkedList {
 
         this.head = newHead
         this.length--
+        return true
     }
 
 
     printHeadToTail() {
+        if(!this.length) return false
         let curr = this.head, str = ""
         while(curr) {
             str += (curr.value + (curr.next && " <-> "))
@@ -118,6 +123,7 @@ class DoublyLinkedList {
 
 
     printTailToHead() {
+        if(!this.length) return false
         let curr = this.tail, str = ""
         while(curr) {
             str += (curr.value + (curr.prev && " <-> "))
@@ -163,15 +169,16 @@ class DoublyLinkedList {
     removeNodesWithValue(value) {
         if(!this.head || value === undefined) return false
 
-        let curr = this.head, next
+        let curr = this.head, next, removed = 0
         while(curr) {
             next = curr.next
             if(curr.value === value) {
                 this.remove(curr)
+                removed++
             }
             curr = next
         }
-        return false
+        return removed !== 0
     }
 
 
@@ -187,14 +194,13 @@ class DoublyLinkedList {
                 } else if (curr === this.tail) {
                     this.pop()
                     return true
-                } else {
-                    curr.prev.next = curr.next
-                    curr.next.prev = curr.prev
-                    curr.prev = null
-                    curr.next = null
-                    this.length--
-                    return true
                 }
+                curr.prev.next = curr.next
+                curr.next.prev = curr.prev
+                curr.prev = null
+                curr.next = null
+                this.length--
+                return true
             }
             curr = curr.next
         }
@@ -246,18 +252,32 @@ dll.push(node7)
 dll.push(tail)
 
 console.log("-----------------")
-console.log("dll length:", dll.length)
+console.log("dll [length]:", dll.length)
 dll.printHeadToTail()
 console.log("-----------------")
-console.log("Contain 1:", dll.containsNodeWithValue(1))
+console.log("Contain [1]:", dll.containsNodeWithValue(1))
 console.log("-----------------")
-console.log("Remove dll.tail.prev")
+console.log("Remove [dll.tail.prev]:")
 dll.remove(dll.tail.prev)
 dll.printHeadToTail()
 console.log("-----------------")
-console.log("Remove all 4:")
+console.log("Remove [all 4]:")
 dll.removeNodesWithValue(4)
 dll.printHeadToTail()
 console.log("-----------------")
+const node0 = new Node(2)
+console.log("dll has [head.next?]", dll.containsNode(dll.head.next))
+console.log("dll has [const node0 = new Node(2)]?", dll.containsNode(node0))
+console.log("dll has [node with value 2]?", dll.containsNodeWithValue(2))
+console.log("-----------------")
+dll.setHead(dll.head.next.next)
+console.log("dll [setHead(dll.head.next.next)]:")
+dll.printHeadToTail()
+dll.setHead(new Node(888))
+console.log("dll [setHead(new Node(888))]:")
+dll.printHeadToTail()
+console.log("-----------------")
+
+
 
 
