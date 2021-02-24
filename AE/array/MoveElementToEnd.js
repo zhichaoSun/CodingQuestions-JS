@@ -45,3 +45,34 @@ function moveElementToEnd(array, toMove) {
         console.log(array)
     }
 }
+
+
+/***
+ *
+ * Double pointer solution, one from the beginning, on from the end
+ *
+ * O(N) time complexity
+ * O(1) aux space
+ *
+ * @param array
+ * @param toMove
+ * @returns modified array
+ *
+ */
+function moveElementToEnd2(array, toMove) {
+    let left = 0, right = array.length - 1
+
+    while(left < right) {
+        if(array[left] === toMove) {
+            if(array[right] !== toMove) {
+                const temp = array[left]
+                array[left] = array[right]
+                array[right] = temp
+            } else {
+                right--
+            }
+        } else left++
+    }
+
+    return array
+}
