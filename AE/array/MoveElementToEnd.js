@@ -76,3 +76,32 @@ function moveElementToEnd2(array, toMove) {
 
     return array
 }
+
+
+/***
+ *
+ * Another double pointer solution, more elegant logic over the solution 2
+ *
+ * @param array
+ * @param toMove
+ * @returns modified array
+ *
+ */
+function moveElementToEnd3(array, toMove) {
+    let left = 0, right = array.length - 1
+
+    while(left < right) {
+
+        // add (left < right) to break, otherwise right could be < left and swap one more time
+        while(left < right && array[right] === toMove) right--
+        if(array[left] === toMove) {
+            const temp = array[left]
+            array[left] = array[right]
+            array[right] = temp
+        }
+        left++
+        console.log(array)
+    }
+
+    return array
+}
