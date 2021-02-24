@@ -82,6 +82,9 @@ function moveElementToEnd2(array, toMove) {
  *
  * Another double pointer solution, more elegant logic over the solution 2
  *
+ * O(N) time complexity
+ * O(1) aux space
+ *
  * @param array
  * @param toMove
  * @returns modified array
