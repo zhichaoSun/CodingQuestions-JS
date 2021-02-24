@@ -34,7 +34,7 @@
 /***
  *
  * A very easy-to-implement solution:
- * Using a object to store the teams' names and points,
+ * Using a object to store the teams' names and points (not all, at least won once),
  * then convert to array, sort (O(N*log(N)) time), and finally get the element with max points.
  *
  * O(N*log(N)) time complexity
@@ -47,6 +47,7 @@
  */
 function tournamentWinner(competitions, results) {
     let points = {}
+
     for(let i = 0; i < competitions.length; i++) {
         if(results[i]) points = {...points,
             [competitions[i][0]]: (points[competitions[i][0]] || 0) + 3
@@ -55,5 +56,33 @@ function tournamentWinner(competitions, results) {
             [competitions[i][1]]: (points[competitions[i][1]] || 0) + 3
         }
     }
+
     return Object.entries(points).sort((a, b) => b[1] - a[1])[0][0]
+}
+
+
+/***
+ *
+ * A similar but faster solution, dynamic set the current best during traversing
+ *
+ * O(N) time complexity
+ * O(K) aux space where K is the number of teams
+ *
+ * @param competitions
+ * @param results
+ * @returns {string} the winner
+ *
+ */
+function tournamentWinner2(competitions, results) {
+    let currBest = "", points = {}
+
+    for(let i = 0; i < competitions.length; i++) {
+        const winningTeam = results[i] ? competitions[i][0] : competitions[i][1]
+        points = {...points,
+            [winningTeam]: (points[winningTeam] || 0) + 3
+        }
+        if(points[winningTeam] > (points[currBest] || 0)) currBest = winningTeam
+    }
+
+    return currBest
 }
