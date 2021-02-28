@@ -54,3 +54,37 @@ function classPhotos(redShirtHeights, blueShirtHeights) {
     }
     return true
 }
+
+
+/***
+ *
+ * Less aux space solution
+ *
+ * O(N*log(N))
+ * O(1)
+ *
+ * @param redShirtHeights
+ * @param blueShirtHeights
+ * @returns {boolean}
+ *
+ */
+function classPhotos2(redShirtHeights, blueShirtHeights) {
+    redShirtHeights.sort((a, b) => a - b)
+    blueShirtHeights.sort((a, b) => a - b)
+
+    if(redShirtHeights[0] === blueShirtHeights[0]) return false
+
+    const backRowColor = redShirtHeights[0] > blueShirtHeights[0] ? "red" : "blue"
+
+    for (let i = 1; i < redShirtHeights.length; i++) {
+        const redShirtHeight = redShirtHeights[i]
+        const blueShirtHeight = blueShirtHeights[i]
+
+        if(backRowColor === "red") {
+            if(redShirtHeight <= blueShirtHeight) return false
+        } else {
+            if(redShirtHeight >= blueShirtHeight) return false
+        }
+    }
+    return true
+}
