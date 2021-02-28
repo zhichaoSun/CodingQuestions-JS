@@ -60,8 +60,8 @@ function classPhotos(redShirtHeights, blueShirtHeights) {
  *
  * Less aux space solution
  *
- * O(N*log(N))
- * O(1)
+ * O(N*log(N)) time complexity
+ * O(1) aux space
  *
  * @param redShirtHeights
  * @param blueShirtHeights
