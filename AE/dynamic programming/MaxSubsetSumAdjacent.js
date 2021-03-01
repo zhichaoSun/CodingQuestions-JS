@@ -35,3 +35,26 @@ function maxSubsetSumAdjacent(array) {
 
     return globalMax
 }
+
+
+/***
+ *
+ * Kadanes Algorithm
+ *
+ * O(N) time complexity
+ * O(1) aux time
+ *
+ * @param array
+ * @returns {number}
+ *
+ */
+function maxSubsetSumAdjacent2(array) {
+    let maxEndingHere = array[0], maxSoFar = array[0]
+
+    for (let i = 1; i < array.length; i++) {
+        maxEndingHere = Math.max(array[i] + maxEndingHere, maxEndingHere)
+        maxSoFar = Math.max(maxSoFar, maxEndingHere)
+    }
+
+    return maxSoFar
+}
