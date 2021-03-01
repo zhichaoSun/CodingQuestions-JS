@@ -52,7 +52,8 @@ function maxSubsetSumAdjacent2(array) {
     let maxEndingHere = array[0], maxSoFar = array[0]
 
     for (let i = 1; i < array.length; i++) {
-        maxEndingHere = Math.max(array[i] + maxEndingHere, maxEndingHere)
+        // if current > (current + so-called local max), then the so-called local max is a burden
+        maxEndingHere = Math.max(array[i] + maxEndingHere, array[i])
         maxSoFar = Math.max(maxSoFar, maxEndingHere)
     }
 
