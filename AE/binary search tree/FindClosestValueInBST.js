@@ -27,7 +27,7 @@
  * while keep updating the value closest to the target (having a difference with min abs),
  * until no where to traverse further then return the value
  *
- * O(log(N)) time complexity
+ * avg O(log(N)) | worst O(N) time complexity
  * O(1) aux space
  *
  * @param tree (the head)
@@ -61,3 +61,30 @@ function findClosestValueInBst(tree, target) {
 function getClosest (v, t, cC) {
     return (Math.abs(v - t) < Math.abs(cC - t)) ? v : cC
 }
+
+
+/***
+ *
+ * Same idea but much more clean implementation
+ *
+ * avg O(log(N)) | worst O(N) time complexity
+ * O(1) aux space
+ *
+ * @param tree (the head)
+ * @param target
+ * @returns {number}
+ *
+ */
+function findClosestValueInBst2(tree, target) {
+    let curr = tree, closest = curr.value
+
+    while(curr) {
+        if(Math.abs(target - curr.value) < Math.abs(target - closest)) closest = curr.value
+        if(target < curr.value) curr = curr.left
+        else if(target > curr.value) curr = curr.right
+        else break
+    }
+
+    return closest
+}
+
