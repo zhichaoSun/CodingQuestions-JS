@@ -27,12 +27,12 @@
  * O(BST height) aux space
  *
  * @param root
- * @param parent
  * @returns {boolean}
  *
  */
-function validateBst(root, parent = null) {
-    return helper(root)
+function validateBst(root) {
+    // return helper(root)
+    return optimizedHelper(root)
 }
 
 function helper(root, min = -Infinity, max = Infinity) {
@@ -52,4 +52,12 @@ function helper(root, min = -Infinity, max = Infinity) {
     }
 
     return true
+}
+
+
+function optimizedHelper(root, min = -Infinity, max = Infinity) {
+    if(root === null) return true
+    if(root.value < min || root.value >= max) return false
+
+    return optimizedHelper(root.left, min, root.value) && optimizedHelper(root.right, root.value, max)
 }
