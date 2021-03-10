@@ -43,3 +43,33 @@ function hasSingleCycle(array) {
     }
     return true
 }
+
+
+/***
+ *
+ * Optimized solution
+ *
+ * O(N) time complexity
+ * O(1) aux space
+ *
+ * @param array
+ * @returns {boolean}
+ */
+function hasSingleCycle2(array) {
+    const n = array.length
+    let sum = 0, nextIndex = 0
+    for(let i = 0; i < n; i++) {
+        sum += array[nextIndex]
+        nextIndex = nextIndex + array[nextIndex]
+        while(nextIndex < 0) {
+            nextIndex += n
+        }
+        nextIndex %= n
+
+        // if index goes back to 0 before visiting all of [array.length] elements
+        if(nextIndex === 0 && i !== n - 1) return false
+    }
+
+    // if go back to 0 after [array.length] run
+    return nextIndex === 0
+}
