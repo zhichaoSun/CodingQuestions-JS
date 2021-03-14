@@ -51,3 +51,19 @@ function generateDocument(characters, document) {
 
     return true
 }
+
+function generateDocument2(characters, document) {
+    let cMap = {}
+
+    for (const character of characters) {
+        if(!(character in cMap)) cMap[character] = 0
+        cMap[character]++
+    }
+
+    for (const documentElement of document) {
+        if(!(documentElement in cMap) || cMap[documentElement] === 0) return false
+        cMap[documentElement]--
+    }
+
+    return true
+}
