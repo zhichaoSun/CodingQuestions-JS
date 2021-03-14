@@ -19,6 +19,7 @@
 /***
  * O(N^3) time complexity
  * O(N) aux space
+ *
  * @param string
  * @returns {string}
  */
@@ -45,3 +46,39 @@ function reverse(string) {
     }
     return newString
 }
+
+
+/***
+ *
+ * A faster solution
+ *
+ * O(N^2) time space
+ * O(N) aux space
+ *
+ * @param string
+ * @returns {*}
+ */
+function longestPalindromicSubstring2(string) {
+    let gl = [0, 1]
+
+    for (let i = 1; i < string.length; i++) {
+        const odd = getLongestPIndex(string, i - 1, i + 1)
+        const even = getLongestPIndex(string, i, i + 1)
+        const longest = odd[1] - odd[0] > even[1] - even[0] ? odd : even
+
+        if(longest[1] - longest[0] > gl[1] - gl[0]) gl = longest
+    }
+
+    return string.slice(gl[0], gl[1])
+}
+
+function getLongestPIndex(string, left, right) {
+    while(left >= 0 && right <= string.length - 1) {
+        if(string[left] !== string[right]) break
+        left--
+        right++
+    }
+    return [left + 1, right]
+}
+
+
