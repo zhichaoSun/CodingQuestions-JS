@@ -22,7 +22,7 @@
  * O(W*W*N*log(N)) time complexity, where W is the length of the input words array and N is the length of the longest word in words
  * O(W*N) aux space
  *
- * @param words
+ * @param {[]} words
  * @returns {*[]|[[*]]}
  */
 function groupAnagrams(words) {
@@ -61,4 +61,28 @@ function isAnagrams(word1, word2) {
     }
 
     return true
+}
+
+
+/***
+ *
+ * A much better solution
+ *
+ * O(W*N*log(N)) time complexity, where W is the length of the input words array and N is the length of the longest word in words
+ * O(W*N) aux space
+ *
+ * @param {[]}words
+ * @returns {*[]|[[*]]}
+ */
+function groupAnagrams2(words) {
+    let ans = {}
+
+    for (const word of words) { // W
+        const aStr = word.split("").sort().join() // N*log(N)
+
+        if(aStr in ans) ans[aStr].push(word)
+        else ans[aStr] = [word]
+    }
+
+    return Object.values(ans)
 }
