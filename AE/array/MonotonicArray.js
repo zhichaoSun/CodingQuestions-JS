@@ -44,5 +44,22 @@ function isMonotonic(array) {
 console.log(isMonotonic([-1, -1, -10, -1100, -1101, -1102, -9001]))
 
 
+/***
+ * Another interesting solution
+ *
+ * O(N) time complexity
+ * O(1) aux space
+ *
+ * @param array
+ * @returns {boolean}
+ */
+function isMonotonic2(array) {
+    let isDecreasing = true
+    let isIncreasing = true
+    for (let i = 1; i < array.length; i++) {
+        if(array[i] - array[i-1] > 0) isDecreasing = false
+        if(array[i] - array[i-1] < 0) isIncreasing = false
+    }
 
-
+    return isDecreasing || isIncreasing
+}
