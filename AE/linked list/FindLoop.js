@@ -44,3 +44,28 @@ function findLoop(head) {
 
     return curr
 }
+
+
+/***
+ *
+ * Who came up with this solution???
+ *
+ * O(N) time complexity
+ * O(1) aux space
+ *
+ * @param head
+ * @returns {LinkedList}
+ */
+function findLoop2(head) {
+    let slow = head.next, fast = head.next.next
+    while(slow !== fast) {
+        slow = slow.next
+        fast = fast.next.next
+    }
+    slow = head
+    while(slow !== fast) {
+        slow = slow.next
+        fast = fast.next
+    }
+    return slow
+}
