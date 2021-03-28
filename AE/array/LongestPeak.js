@@ -70,3 +70,45 @@ function longestPeak(array) {
 
     return gl
 }
+
+
+/***
+ *
+ * Determine if a element is a tip of the peak, then count the length of this tip's peak
+ * Will be slower than the solution above but much easier and more readable
+ *
+ * O(N) time complexity
+ * O(1) aux space
+ *
+ * @param array
+ * @returns {number}
+ *
+ */
+function longestPeak2(array) {
+    let longestPeakLength = 0
+
+    for (let i = 1; i < array.length - 1; i++) {
+        const last = array[i - 1], curr = array[i], next = array[i + 1]
+
+        if(last < curr && curr > next) {
+            longestPeakLength = Math.max(longestPeakLength, findPeakLength(i, array))
+        }
+    }
+
+    return longestPeakLength
+}
+
+function findPeakLength(tipIndex, array) {
+    let ps = tipIndex - 1, pe = tipIndex + 1
+    let leftChanged = true, rightChanged = true
+
+    while(leftChanged || rightChanged) {
+        if(array[ps - 1] < array[ps]) ps--
+        else leftChanged = false
+
+        if(array[pe + 1] < array[pe]) pe++
+        else rightChanged = false
+    }
+
+    return pe - ps + 1
+}
