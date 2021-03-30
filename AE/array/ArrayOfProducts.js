@@ -42,4 +42,38 @@ function arrayOfProducts(array) {
     return ans
 }
 
-console.log(arrayOfProducts([5,1,4,2]))
+
+/***
+ *
+ * Another interesting solution, faster
+ *
+ * O(N) time complexity
+ * O(N) aux space
+ *
+ * @param array
+ * @returns {[]}
+ */
+function arrayOfProducts2(array) {
+    let forwardSeed = 1
+    const forwardProducts = new Array(array.length).fill(1)
+    for (let i = 0; i < array.length; i++) {
+        forwardProducts[i] = forwardSeed
+        forwardSeed *= array[i]
+    }
+
+    let backwardSeed = 1
+    const backwardProducts = new Array(array.length).fill(1)
+    for (let i = array.length - 1; i > -1; i--) {
+        backwardProducts[i] = backwardSeed
+        backwardSeed *= array[i]
+    }
+
+    const ans = []
+    for (let i = 0; i < array.length; i++) {
+        ans.push(forwardProducts[i] * backwardProducts[i])
+    }
+
+    return ans
+}
+
+console.log(arrayOfProducts2([5,1,4,2]))
