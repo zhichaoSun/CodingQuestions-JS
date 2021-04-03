@@ -41,3 +41,23 @@ function firstDuplicateValue(array) {
 
     return -1
 }
+
+
+/***
+ *
+ * Another interesting solution, less space needed.
+ *
+ * O(N) time complexity
+ * O(1) aux space
+ *
+ * @param array
+ * @returns {number}
+ */
+function firstDuplicateValue2(array)  {
+    for (const el of array) {
+        const absEl = Math.abs(el)
+        if(array[absEl - 1] < 0) return absEl
+        else array[absEl - 1] *= -1
+    }
+    return -1
+}
