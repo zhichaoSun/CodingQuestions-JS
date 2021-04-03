@@ -48,3 +48,20 @@ function nodeDepths(root) {
     }
     return depths
 }
+
+
+/***
+ *
+ * A recursive solution
+ *
+ * O(N) time complexity
+ * O(N) aux space
+ *
+ * @param root
+ * @param depth
+ * @returns {number}
+ */
+function nodeDepths2(root, depth = 0) {
+    if(!root) return 0
+    return depth + nodeDepths2(root.left, depth + 1) + nodeDepths2(root.right, depth + 1)
+}
